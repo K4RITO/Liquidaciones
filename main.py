@@ -33,7 +33,7 @@ while operacion != "10":
             telefono = input("Ingrese el telefono del empleado: ")
             edad = input("Ingrese la edad del empleado: ")
 
-            empleados[contador_empleado] = [id_trabajo, turno, nombre, apellido, dni, telefono]
+            empleados[contador_empleado] = [id_trabajo, turno, nombre, apellido, dni, telefono, edad]
             contador_empleado =+ 1
             
             continuar = input("Desea ingresar otro empleado: 1 = Si, 2 = No: ")
@@ -47,20 +47,9 @@ while operacion != "10":
                 empleados.pop(id)
     
     elif operacion == "3":
-        indice = 0
-        for id,datos in empleados.items():
-            nombre = datos[0]
-            apellido = datos[1]
-            dni = datos[2]
-            telefono = datos[3]
-            id_puesto = datos[4]
-            empleado.append(nombre)
-            empleado.append(apellido)
-            empleado.append(dni)
-            empleado.append(telefono)
-            empleado.append(id_puesto)
-            indice =+1
-            print(indice,"-nombre: ", empleado[0],"apellido: ", empleado[1], "dni: ", empleado [2],"telefono: ", empleado[3], "ID puesto: ", empleado[4])
+        for id, datos in empleados.items():
+            id_trabajo, turno, nombre, apellido, dni, telefono, edad = datos
+            print(f"ID: {id}, nombre: {nombre}, apellido: {apellido}, DNI: {dni}, telefono: {telefono}, ID trabajo: {id_trabajo}, edad: {edad}, turno: {turno}.")
     
     elif operacion == "4":
         id_puesto_modificar = input("Ingrese el ID del puesto que quiere modificar: ")
