@@ -33,11 +33,13 @@ while operacion != "10":
             empleados[contador_empleado] = [nombre,apellido,dni,telefono,id_puesto]
             contador_empleado =+ 1
             bandera_1 = False
+    
     elif operacion == "2":
         empleado_a_eliminar = input ("Ingrese el ID del empleado que que quiere eliminar: ")
         for id in empleados:
             if empleado_a_eliminar == id:
                 empleados.pop(id)
+    
     elif operacion == "3":
         indice = 0
         for id,datos in empleados.iteritems():
@@ -53,6 +55,7 @@ while operacion != "10":
             empleado.append(id_puesto)
             indice =+1
             print (indice,"-nombre: ", empleado[0],"apellido: ", empleado[1], "dni: ", empleado [2],"telefono: ", empleado[3], "ID puesto: ", empleado[4])
+    
     elif operacion == "4":
         id_puesto_modificar = input("Ingrese el ID del puesto que quiere modificar: ")
         turno_modificar = input("Ingrese el turno que quiere modificar: ")
@@ -62,6 +65,7 @@ while operacion != "10":
             sueldo_hora = datos[id][1]
             if id_puesto_modificar == id and turno_modificar == id[1]:
                 sueldo_hora = valor
+    
     elif operacion == "5":
         fecha_calcular = input("Ingrese la fecha que quiere calcular: ")
         id_empleado_calcular = input("Ingrese el ID del empleado que quiere calcular: ")
@@ -79,7 +83,5 @@ while operacion != "10":
                         if id_puesto == id[0]:
                             monto_dia = horas_trabajadas * sueldo_hora + horas_extra * (sueldo_hora * 1.5)
                             print("El monto del dia es: ", monto_dia)
-
-
 
     operacion = input("Que operacion quiere realizar: 1=Agregar Empleado, 2=Eliminar empleado,3=modificar puesto,4=mostrar sueldo, 5=Calcular monto del dia, 10=salir ")
