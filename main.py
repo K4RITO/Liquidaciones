@@ -3,7 +3,7 @@
 
 # estructura empleados = {id_empleado: [id_trabajo, turno, nombre, apellido, dni, telefono, edad]}
 empleados = {}
-# estructura tipo_trabajos = {(id_trabajo,turno):[puesto, sueldo_hora, entrada, salida, area]}
+# estructura tipo_trabajos = {(id_trabajo, turno):[puesto, sueldo_hora, entrada, salida, area]}
 tipo_trabajos = {}
 # estructura liquidaciones = {id_liquidacion: [id_empleado, sueldo_bruto, horas_extra, deducciones, periodo, id_jornada, premios]}
 liquidaciones = {}
@@ -11,32 +11,38 @@ liquidaciones = {}
 jornada = {}
 contador_empleado = 1
 empleado = []
-bandera_1 = True
 
 
 mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar puesto, 5 = calcular monto del dia, 10 = salir "
 operacion = input(mensaje)
 
-while operacion not in range(1, 11):
+while int(operacion) not in range(1, 11):
     print("Opcion incorrecta, seleccione una opcion valida!")
     operacion = input(mensaje)
     
 while operacion != "10":
     if operacion == "1":
+        bandera = True
         #modificar esta funcion para que agregue el id del trabajo y el turno
-        while bandera_1 == True:
+        while bandera:
+            id_trabajo = int(input("Ingrese el id del puesto: 1 = Obrero, 2 = Gerente: "))
+            turno = input("Ingrese el turno del empleado: ")
             nombre = input("Ingrese el nombre del empleado: ")
             apellido = input("Ingrese el apellido del empleado: ")
             dni = input("Ingrese el DNI del empleado: ")
             telefono = input("Ingrese el telefono del empleado: ")
-            id_puesto = input("Ingrese el id del puesto: 1=Obrero, 2=Gerente ")
-            empleados[contador_empleado] = [nombre,apellido,dni,telefono,id_puesto]
+            edad = input("Ingrese la edad del empleado: ")
+
+            empleados[contador_empleado] = [id_trabajo, turno, nombre, apellido, dni, telefono]
             contador_empleado =+ 1
-            bandera_1 = False
+            
+            continuar = input("Desea ingresar otro empleado: 1 = Si, 2 = No: ")
+            if (continuar == "2"):
+                bandera = False
     
     elif operacion == "2":
         empleado_a_eliminar = input ("Ingrese el ID del empleado que que quiere eliminar: ")
-        for id in empleados:
+        for id, datos in empleados:
             if empleado_a_eliminar == id:
                 empleados.pop(id)
     
@@ -54,7 +60,7 @@ while operacion != "10":
             empleado.append(telefono)
             empleado.append(id_puesto)
             indice =+1
-            print (indice,"-nombre: ", empleado[0],"apellido: ", empleado[1], "dni: ", empleado [2],"telefono: ", empleado[3], "ID puesto: ", empleado[4])
+            print(indice,"-nombre: ", empleado[0],"apellido: ", empleado[1], "dni: ", empleado [2],"telefono: ", empleado[3], "ID puesto: ", empleado[4])
     
     elif operacion == "4":
         id_puesto_modificar = input("Ingrese el ID del puesto que quiere modificar: ")
