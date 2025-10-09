@@ -34,7 +34,7 @@ while operacion != "10":
             edad = input("Ingrese la edad del empleado: ")
 
             empleados[contador_empleado] = [id_trabajo, turno, nombre, apellido, dni, telefono, edad]
-            contador_empleado =+ 1
+            contador_empleado += 1
             
             continuar = input("Desea ingresar otro empleado: 1 = Si, 2 = No: ")
             if (continuar == "2"):
@@ -79,4 +79,4 @@ while operacion != "10":
                             monto_dia = horas_trabajadas * sueldo_hora + horas_extra * (sueldo_hora * 1.5)
                             print("El monto del dia es: ", monto_dia)
 
-    operacion = input("Que operacion quiere realizar: 1=Agregar Empleado, 2=Eliminar empleado,3=modificar puesto,4=mostrar sueldo, 5=Calcular monto del dia, 10=salir ")
+    operacion = input(mensaje)
