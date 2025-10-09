@@ -1,6 +1,3 @@
-# -*- coding:utf-8 -*-
-
-
 # TODO: añadir error handler y sentencias TRY EXCEPT FINALLY
 # estructura empleados = {id_empleado: [id_trabajo, turno, nombre, apellido, dni, telefono, edad]}
 empleados = {}
