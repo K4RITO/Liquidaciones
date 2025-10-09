@@ -1,16 +1,21 @@
 # -*- coding:utf-8 -*-
 
 
+# TODO: añadir error handler y sentencias TRY EXCEPT FINALLY
 # estructura empleados = {id_empleado: [id_trabajo, turno, nombre, apellido, dni, telefono, edad]}
 empleados = {}
-# estructura tipo_trabajos = {(id_trabajo, turno):[puesto, sueldo_hora, entrada, salida, area]}
+
+# estructura tipo_trabajos = {(id_trabajo, turno): [puesto, sueldo_hora, entrada, salida, area]}
+# Actualmente tenemos id 1: obrero, id 2: gerente
 tipo_trabajos = {}
+
 # estructura liquidaciones = {id_liquidacion: [id_empleado, sueldo_bruto, horas_extra, deducciones, periodo, id_jornada, premios]}
 liquidaciones = {}
+
 # estructura jornada = {(fecha, id_empleado): [horario_entrada, horario_salida]}
 jornada = {}
+
 contador_empleado = 1
-empleado = []
 
 
 mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar puesto, 5 = calcular monto del dia, 10 = salir "
@@ -41,9 +46,13 @@ while operacion != "10":
                 bandera = False
     
     elif operacion == "2":
-        empleado_a_eliminar = input ("Ingrese el ID del empleado que que quiere eliminar: ")
-        for id, datos in empleados:
-            if empleado_a_eliminar == id:
+        empleado_a_eliminar = int(input("Ingrese el ID del empleado que quiere eliminar: "))
+
+        if empleado_a_eliminar not in empleados.keys():
+            print("El ID propusto no existe en la base de datos, pruebe con otro ID o revise los existentes.")
+        else :
+            confirmacion = int(input(f"Esta seguro de eliminar el empleado {empleados[empleado_a_eliminar]}, 1 = Si, 2 = No: "))
+            if confirmacion == 1:
                 empleados.pop(id)
     
     elif operacion == "3":
