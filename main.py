@@ -1,5 +1,6 @@
 # -*- coding:utf-8 -*-
 
+
 # estructura empleados = {id_empleado: [id_trabajo, turno, nombre, apellido, dni, telefono, edad]}
 empleados = {}
 # estructura tipo_trabajos = {(id_trabajo,turno):[puesto, sueldo_hora, entrada, salida, area]}
@@ -13,8 +14,13 @@ empleado = []
 bandera_1 = True
 
 
+mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar puesto, 5 = calcular monto del dia, 10 = salir "
+operacion = input(mensaje)
 
-operacion = input("Que operacion quiere realizar: 1=Agregar Empleado, 2=Eliminar empleado,3 = mostrar empleados,4=modificar puesto,5=calcular monto del dia, 10=salir ")
+while operacion not in range(1, 11):
+    print("Opcion incorrecta, seleccione una opcion valida!")
+    operacion = input(mensaje)
+    
 while operacion != "10":
     if operacion == "1":
         #modificar esta funcion para que agregue el id del trabajo y el turno
