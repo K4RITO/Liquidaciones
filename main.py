@@ -48,7 +48,7 @@ while operacion != "10":
     
     elif operacion == "3":
         indice = 0
-        for id,datos in empleados.iteritems():
+        for id,datos in empleados.items():
             nombre = datos[0]
             apellido = datos[1]
             dni = datos[2]
@@ -67,7 +67,7 @@ while operacion != "10":
         turno_modificar = input("Ingrese el turno que quiere modificar: ")
         valor = input("Ingrese el nuevo sueldo por hora: ")
         
-        for id, datos in tipo_trabajos.iteritems():
+        for id, datos in tipo_trabajos.items():
             sueldo_hora = datos[id][1]
             if id_puesto_modificar == id and turno_modificar == id[1]:
                 sueldo_hora = valor
@@ -75,16 +75,16 @@ while operacion != "10":
     elif operacion == "5":
         fecha_calcular = input("Ingrese la fecha que quiere calcular: ")
         id_empleado_calcular = input("Ingrese el ID del empleado que quiere calcular: ")
-        for id, datos in jornada.iteritems():
+        for id, datos in jornada.items():
             horario_entrada = datos[0]
             horario_salida = datos[1]
             if fecha_calcular == id[0] and id_empleado_calcular == id[1]:
                 horas_trabajadas = horario_salida - horario_entrada
                 if horas_trabajadas > 8:
                     horas_extra = horas_trabajadas - 8
-                for id, datos in empleados.iteritems():
+                for id, datos in empleados.items():
                     id_puesto = datos[0]
-                    for id, datos in tipo_trabajos.iteritems():
+                    for id, datos in tipo_trabajos.items():
                         sueldo_hora = datos[1]
                         if id_puesto == id[0]:
                             monto_dia = horas_trabajadas * sueldo_hora + horas_extra * (sueldo_hora * 1.5)
