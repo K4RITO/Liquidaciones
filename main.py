@@ -1,4 +1,5 @@
 # TODO: añadir error handler y sentencias TRY EXCEPT FINALLY
+# TODO: anañir funciones para modificar el diccionario tipo_trabajos
 # estructura empleados = {id_empleado: [id_trabajo, turno, nombre, apellido, dni, telefono, edad]}
 empleados = {}
 
@@ -15,7 +16,7 @@ jornada = {}
 contador_empleado = 1
 
 
-mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar puesto, 5 = calcular monto del dia, 10 = salir "
+mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar empleado, 5 = calcular monto del dia, 10 = salir: "
 operacion = input(mensaje)
 
 while int(operacion) not in range(1, 11):
@@ -58,14 +59,22 @@ while operacion != "10":
             print(f"ID: {id}, nombre: {nombre}, apellido: {apellido}, DNI: {dni}, telefono: {telefono}, ID trabajo: {id_trabajo}, edad: {edad}, turno: {turno}.")
     
     elif operacion == "4":
-        id_puesto_modificar = input("Ingrese el ID del puesto que quiere modificar: ")
-        turno_modificar = input("Ingrese el turno que quiere modificar: ")
-        valor = input("Ingrese el nuevo sueldo por hora: ")
+        id_puesto_modificar = int(input("Ingrese el ID del puesto que quiere modificar: "))
         
-        for id, datos in tipo_trabajos.items():
-            sueldo_hora = datos[id][1]
-            if id_puesto_modificar == id and turno_modificar == id[1]:
-                sueldo_hora = valor
+        for id, empleado in empleados.items():
+            if id_puesto_modificar != id:
+                continue
+
+            etiquetas = ["id_trabajo", "turno", "nombre", "apellido", "dni", "telefono", "edad"]
+            id_trabajo, turno, nombre, apellido, dni, telefono, edad = empleado
+
+            for i in range(len(empleado)):
+                modificar = input(f"Desea modificar {etiquetas[i]} de {nombre}, {apellido}? 1 = Si, 2 = No: ")
+                if modificar != "1":
+                    continue
+                nuevo_valor = input(f"Ingrese el nuevo valor de {etiquetas[i]}: ")
+                empleado[i] = nuevo_valor
+        
     
     elif operacion == "5":
         fecha_calcular = input("Ingrese la fecha que quiere calcular: ")
