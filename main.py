@@ -1,9 +1,13 @@
 # -*- coding:utf-8 -*-
 
-empleados = {id_empleado: [id_trabajo, turno, nombre, apellido, dni, telefono, edad]}
-tipo_trabajos = {(id_trabajo,turno):[puesto, sueldo_hora, entrada, salida, area]}
-liquidaciones = {id_liquidacion: [id_empleado, sueldo_bruto, horas_extra, deducciones, periodo, id_jornada, premios]}
-jornada = {(fecha, id_empleado): [horario_entrada, horario_salida]}
+# estructura empleados = {id_empleado: [id_trabajo, turno, nombre, apellido, dni, telefono, edad]}
+empleados = {}
+# estructura tipo_trabajos = {(id_trabajo,turno):[puesto, sueldo_hora, entrada, salida, area]}
+tipo_trabajos = {}
+# estructura liquidaciones = {id_liquidacion: [id_empleado, sueldo_bruto, horas_extra, deducciones, periodo, id_jornada, premios]}
+liquidaciones = {}
+# estructura jornada = {(fecha, id_empleado): [horario_entrada, horario_salida]}
+jornada = {}
 contador_empleado = 1
 empleado = []
 bandera_1 = True
