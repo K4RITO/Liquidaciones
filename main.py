@@ -1,11 +1,14 @@
 # TODO: añadir error handler y sentencias TRY EXCEPT FINALLY
 # TODO: anañir funciones para modificar el diccionario tipo_trabajos
 # estructura empleados = {id_empleado: [id_trabajo, turno, nombre, apellido, dni, telefono, edad]}
-empleados = {}
+empleados = {1: [1, "mañana", "Juan", "Perez", "12345678", "555-1234", 30]}
 
-# estructura tipo_trabajos = {(id_trabajo, turno): [puesto, sueldo_hora, entrada, salida, area]}
+# estructura tipo_trabajos = {(id_trabajo, turno): [puesto, sueldo_hora, area]}
 # Actualmente tenemos id 1: obrero, id 2: gerente
-tipo_trabajos = {}
+tipo_trabajos = {(1, "mañana"): ["Obrero", 1000, "Produccion"],
+                 (1, "tarde"): ["Obrero", 1000, "Produccion"],
+                 (2, "mañana"): ["Gerente", 3000, "Administracion"],
+                 (2, "tarde"): ["Gerente", 3000, "Administracion"]}
 
 # estructura liquidaciones = {id_liquidacion: [id_empleado, sueldo_bruto, horas_extra, deducciones, periodo, id_jornada, premios]}
 liquidaciones = {}
@@ -16,7 +19,7 @@ jornada = {}
 contador_empleado = 1
 
 
-mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar empleado, 5 = calcular monto del dia, 10 = salir: "
+mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar empleado, 5 = Agregar jornada, 6 = calcular monto del dia, 10 = salir: "
 operacion = input(mensaje)
 
 while int(operacion) not in range(1, 11):
@@ -59,10 +62,10 @@ while operacion != "10":
             print(f"ID: {id}, nombre: {nombre}, apellido: {apellido}, DNI: {dni}, telefono: {telefono}, ID trabajo: {id_trabajo}, edad: {edad}, turno: {turno}.")
     
     elif operacion == "4":
-        id_puesto_modificar = int(input("Ingrese el ID del puesto que quiere modificar: "))
+        id_empleado_modificar = int(input("Ingrese el ID del empleado que quiere modificar: "))
         
         for id, empleado in empleados.items():
-            if id_puesto_modificar != id:
+            if id_empleado_modificar != id:
                 continue
 
             etiquetas = ["id_trabajo", "turno", "nombre", "apellido", "dni", "telefono", "edad"]
@@ -74,9 +77,16 @@ while operacion != "10":
                     continue
                 nuevo_valor = input(f"Ingrese el nuevo valor de {etiquetas[i]}: ")
                 empleado[i] = nuevo_valor
-        
-    
+
     elif operacion == "5":
+        fecha = input("Ingrese la fecha de la jornada (DD/MM/AAAA): ")
+        id_empleado = input("Ingrese el ID del empleado: ")
+        horario_entrada = int(input("Ingrese la hora de entrada (formato 24hs): "))
+        horario_salida = int(input("Ingrese la hora de salida (formato 24hs): "))
+        jornada [(fecha, id_empleado)] = [horario_entrada, horario_salida]
+    
+    
+    elif operacion == "6":
         fecha_calcular = input("Ingrese la fecha que quiere calcular: ")
         id_empleado_calcular = input("Ingrese el ID del empleado que quiere calcular: ")
         for id, datos in jornada.items():
@@ -86,12 +96,10 @@ while operacion != "10":
                 horas_trabajadas = horario_salida - horario_entrada
                 if horas_trabajadas > 8:
                     horas_extra = horas_trabajadas - 8
-                for id, datos in empleados.items():
+                for id, datos in tipo_trabajos.items():
                     id_puesto = datos[0]
-                    for id, datos in tipo_trabajos.items():
-                        sueldo_hora = datos[1]
-                        if id_puesto == id[0]:
-                            monto_dia = horas_trabajadas * sueldo_hora + horas_extra * (sueldo_hora * 1.5)
-                            print("El monto del dia es: ", monto_dia)
+                    if id_puesto == id[0]:
+                        monto_dia = horas_trabajadas * sueldo_hora + horas_extra * (sueldo_hora * 1.5)
+                        print("El monto del dia es: ", monto_dia)
 
     operacion = input(mensaje)
