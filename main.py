@@ -22,10 +22,10 @@ jornada = {("10/10/2025", 1): [8, 17],
            ("12/10/2025", 3): [8, 16],
            ("13/10/2025", 4): [9, 17]}
 
-contador_empleado = 1
+contador_empleado = 5
 
 
-mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar empleado, 5 = Agregar jornada, 6 = Mostrar jornadas, 7 = Modificar jornada, 8 = Eliminar Jornada, 9 = calcular monto del dia, 10 = salir: "
+mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar empleado, 5 = Agregar jornada, 6 = Mostrar jornadas, 7 = Modificar horarios jornada, 8 = Eliminar Jornada, 9 = calcular monto del dia, 10 = salir: "
 operacion = input(mensaje)
 
 while int(operacion) not in range(1, 11):
@@ -96,6 +96,23 @@ while operacion != "10":
             fecha, id_empleado = id_jornada
             horario_entrada, horario_salida = datos_jornada
             print(f"Fecha: {fecha}, ID Empleado: {id_empleado}, Hora Entrada: {horario_entrada}, Hora Salida: {horario_salida}.")
+    
+    elif operacion == "7":
+        fecha_modificar = input("Ingrese la fecha de la jornada que quiere modificar (DD/MM/AAAA): ")
+        id_empleado_modificar = int(input("Ingrese el ID del empleado de la jornada que quiere modificar: "))
+
+        for id_jornada, datos_jornada in jornada.items():
+
+            etiquetas = ["Horario de entrada", "Horario de Salida"]
+            if fecha_modificar != id_jornada[0] or id_empleado_modificar != id_jornada[1]:
+                continue
+
+            for i in range(len(datos_jornada)):
+                modificar = input(f"Desea modificar {etiquetas[i]}? 1 = Si, 2 = No: ")
+                if modificar != "1":
+                    continue
+                nuevo_valor = input(f"Ingrese el nuevo valor de {etiquetas[i]}: ")
+                datos_jornada[i] = int(nuevo_valor)
 
     elif operacion == "9":
         fecha_calcular = input("Ingrese la fecha que quiere calcular: ")
