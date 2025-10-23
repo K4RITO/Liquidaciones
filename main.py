@@ -25,14 +25,14 @@ jornada = {("10/10/2025", 1): [8, 17],
 contador_empleado = 5
 
 
-mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar empleado, 5 = Agregar jornada, 6 = Mostrar jornadas, 7 = Modificar horarios jornada, 8 = Eliminar Jornada, 9 = calcular monto del dia, 10 = salir: "
+mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar empleado, 5 = Agregar jornada, 6 = Mostrar jornadas, 7 = Modificar horarios jornada, 8 = Eliminar Jornada, 9 = Agregar tipo trabajos, 10 = Mostrar tipos de trabajos, 11 = Modificar Tipo trabajo, 12 = Eliminar tipo trabajo, 13 = calcular monto del dia, 14 = salir: "
 operacion = input(mensaje)
 
 while int(operacion) not in range(1, 11):
     print("Opcion incorrecta, seleccione una opcion valida!")
     operacion = input(mensaje)
     
-while operacion != "10":
+while operacion != "14":
     if operacion == "1":
         bandera = True
         #modificar esta funcion para que agregue el id del trabajo y el turno
@@ -126,6 +126,15 @@ while operacion != "10":
                 jornada.pop((fecha_eliminar, id_empleado_eliminar))
 
     elif operacion == "9":
+        id_trabajo = int(input("Ingrese el ID del puesto: "))
+        turno_trabajo = input("Ingrese el turno del puesto (Mañana o Tarde): ").lower()
+        puesto = input("Ingrese el nombre del puesto: ")
+        sueldo_hora = int(input("Ingrese el sueldo por hora del puesto: "))
+        area = input("Ingrese el area del puesto: ")
+
+        tipo_trabajos[(id_trabajo, turno_trabajo)] = [puesto, sueldo_hora, area]
+
+    elif operacion == "13":
         fecha_calcular = input("Ingrese la fecha que quiere calcular: ")
         id_empleado_calcular = int(input("Ingrese el ID del empleado que quiere calcular: "))
         turno_calcular = input("Ingrese el turno del empleado que quiere calcular (Mañana o Tarde): ").lower()
