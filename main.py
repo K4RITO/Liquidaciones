@@ -97,8 +97,6 @@ while operacion != "10":
         id_empleado_calcular = int(input("Ingrese el ID del empleado que quiere calcular: "))
         turno_calcular = input("Ingrese el turno del empleado que quiere calcular (Mañana o Tarde): ").lower()
 
-        # acceder directamenta a los datos en vez de hacer un for
-        jornada[(fecha_calcular, id_empleado_calcular)] = datos_jornada
         for id_jornada, datos_jornada in jornada.items():
             horario_entrada = datos_jornada[0]
             horario_salida = datos_jornada[1]
@@ -109,6 +107,7 @@ while operacion != "10":
                 if horas_trabajadas > 8:
                     # restar las horas extra de las horas trabajadas
                     horas_extra = horas_trabajadas - 8
+                    horas_trabajadas -= horas_extra
 
                 for id_tipo_trabajo, datos_tipo_trabajo in tipo_trabajos.items():
                     id_puesto = id_tipo_trabajo[0]
