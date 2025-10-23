@@ -160,6 +160,17 @@ while operacion != "14":
                     nuevo_valor = int(nuevo_valor)
                 datos_tipo_trabajo[i] = nuevo_valor
 
+    elif operacion == "12":
+        id_puesto_eliminar = int(input("Ingrese el ID del puesto que quiere eliminar: "))
+        turno_eliminar = input("Ingrese el turno del puesto que quiere eliminar (Mañana o Tarde): ").lower()
+
+        if (id_puesto_eliminar, turno_eliminar) not in tipo_trabajos.keys():
+            print("El tipo de trabajo propuesto no existe en la base de datos, pruebe con otro tipo de trabajo o revise los existentes.")
+        else:
+            confirmacion = input(f"Esta seguro de eliminar el tipo de trabajo con ID {id_puesto_eliminar} y turno {turno_eliminar}, 1 = Si, 2 = No: ")
+            if confirmacion == "1":
+                tipo_trabajos.pop((id_puesto_eliminar, turno_eliminar))
+
     elif operacion == "13":
         fecha_calcular = input("Ingrese la fecha que quiere calcular: ")
         id_empleado_calcular = int(input("Ingrese el ID del empleado que quiere calcular: "))
