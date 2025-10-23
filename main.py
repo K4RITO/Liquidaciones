@@ -28,7 +28,7 @@ contador_empleado = 5
 mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar empleado, 5 = Agregar jornada, 6 = Mostrar jornadas, 7 = Modificar horarios jornada, 8 = Eliminar Jornada, 9 = Agregar tipo trabajos, 10 = Mostrar tipos de trabajos, 11 = Modificar Tipo trabajo, 12 = Eliminar tipo trabajo, 13 = calcular monto del dia, 14 = salir: "
 operacion = input(mensaje)
 
-while int(operacion) not in range(1, 11):
+while int(operacion) not in range(1, 15):
     print("Opcion incorrecta, seleccione una opcion valida!")
     operacion = input(mensaje)
     
@@ -139,6 +139,26 @@ while operacion != "14":
             id_puesto, turno = id_tipo_trabajo
             puesto, sueldo_hora, area = datos_tipo_trabajo
             print(f"ID Puesto: {id_puesto}, Turno: {turno}, Puesto: {puesto}, Sueldo por hora: {sueldo_hora}, Area: {area}.")
+
+    elif operacion == "11":
+        id_puesto_modificar = int(input("Ingrese el ID del puesto que quiere modificar: "))
+        turno_modificar = input("Ingrese el turno del puesto que quiere modificar (Mañana o Tarde): ").lower()
+
+        for id_tipo_trabajo, datos_tipo_trabajo in tipo_trabajos.items():
+            if id_puesto_modificar != id_tipo_trabajo[0] or turno_modificar != id_tipo_trabajo[1]:
+                continue
+
+            etiquetas = ["puesto", "sueldo_hora", "area"]
+            puesto, sueldo_hora, area = datos_tipo_trabajo
+
+            for i in range(len(datos_tipo_trabajo)):
+                modificar = input(f"Desea modificar {etiquetas[i]}? 1 = Si, 2 = No: ")
+                if modificar != "1":
+                    continue
+                nuevo_valor = input(f"Ingrese el nuevo valor de {etiquetas[i]}: ")
+                if etiquetas[i] == "sueldo_hora":
+                    nuevo_valor = int(nuevo_valor)
+                datos_tipo_trabajo[i] = nuevo_valor
 
     elif operacion == "13":
         fecha_calcular = input("Ingrese la fecha que quiere calcular: ")
