@@ -134,6 +134,12 @@ while operacion != "14":
 
         tipo_trabajos[(id_trabajo, turno_trabajo)] = [puesto, sueldo_hora, area]
 
+    elif operacion == "10":
+        for id_tipo_trabajo, datos_tipo_trabajo in tipo_trabajos.items():
+            id_puesto, turno = id_tipo_trabajo
+            puesto, sueldo_hora, area = datos_tipo_trabajo
+            print(f"ID Puesto: {id_puesto}, Turno: {turno}, Puesto: {puesto}, Sueldo por hora: {sueldo_hora}, Area: {area}.")
+
     elif operacion == "13":
         fecha_calcular = input("Ingrese la fecha que quiere calcular: ")
         id_empleado_calcular = int(input("Ingrese el ID del empleado que quiere calcular: "))
