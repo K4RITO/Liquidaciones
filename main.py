@@ -25,7 +25,7 @@ jornada = {("10/10/2025", 1): [8, 17],
 contador_empleado = 1
 
 
-mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar empleado, 5 = Agregar jornada, 6 = calcular monto del dia, 10 = salir: "
+mensaje = "Que operacion quiere realizar: 1 = Agregar Empleado, 2 = Eliminar empleado, 3 = mostrar empleados, 4 = modificar empleado, 5 = Agregar jornada, 6 = Mostrar jornadas, 7 = Modificar jornada, 8 = Eliminar Jornada, 9 = calcular monto del dia, 10 = salir: "
 operacion = input(mensaje)
 
 while int(operacion) not in range(1, 11):
@@ -91,8 +91,13 @@ while operacion != "10":
         horario_salida = int(input("Ingrese la hora de salida (formato 24hs): "))
         jornada [(fecha, id_empleado)] = [horario_entrada, horario_salida]
     
-    
     elif operacion == "6":
+        for id_jornada, datos_jornada in jornada.items():
+            fecha, id_empleado = id_jornada
+            horario_entrada, horario_salida = datos_jornada
+            print(f"Fecha: {fecha}, ID Empleado: {id_empleado}, Hora Entrada: {horario_entrada}, Hora Salida: {horario_salida}.")
+
+    elif operacion == "9":
         fecha_calcular = input("Ingrese la fecha que quiere calcular: ")
         id_empleado_calcular = int(input("Ingrese el ID del empleado que quiere calcular: "))
         turno_calcular = input("Ingrese el turno del empleado que quiere calcular (Mañana o Tarde): ").lower()
@@ -105,7 +110,6 @@ while operacion != "10":
                 horas_trabajadas = horario_salida - horario_entrada
 
                 if horas_trabajadas > 8:
-                    # restar las horas extra de las horas trabajadas
                     horas_extra = horas_trabajadas - 8
                     horas_trabajadas -= horas_extra
 
