@@ -114,6 +114,17 @@ while operacion != "10":
                 nuevo_valor = input(f"Ingrese el nuevo valor de {etiquetas[i]}: ")
                 datos_jornada[i] = int(nuevo_valor)
 
+    elif operacion == "8":
+        fecha_eliminar = input("Ingrese la fecha de la jornada que quiere eliminar (DD/MM/AAAA): ")
+        id_empleado_eliminar = int(input("Ingrese el ID del empleado de la jornada que quiere eliminar: "))
+
+        if (fecha_eliminar, id_empleado_eliminar) not in jornada.keys():
+            print("La jornada propuesta no existe en la base de datos, pruebe con otra jornada o revise las existentes.")
+        else:
+            confirmacion = input(f"Esta seguro de eliminar la jornada del empleado con ID {id_empleado_eliminar} en la fecha {fecha_eliminar}, 1 = Si, 2 = No: ")
+            if confirmacion == "1":
+                jornada.pop((fecha_eliminar, id_empleado_eliminar))
+
     elif operacion == "9":
         fecha_calcular = input("Ingrese la fecha que quiere calcular: ")
         id_empleado_calcular = int(input("Ingrese el ID del empleado que quiere calcular: "))
