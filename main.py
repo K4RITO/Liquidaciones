@@ -1,12 +1,15 @@
 # TODO: añadir error handler y sentencias TRY EXCEPT FINALLY
 # TODO: anañir funciones para modificar el diccionario tipo_trabajos
 # estructura empleados = {id_empleado: [id_trabajo, turno, nombre, apellido, dni, telefono, edad]}
-empleados = {1: [1, "mañana", "Juan", "Perez", "12345678", "555-1234", 30]}
+empleados = {1: [1, "mañana", "Juan", "Perez", "12345678", "555-1234", 30],
+             2: [2, "tarde", "Maria", "Gomez", "87654321", "555-5678", 40],
+             3: [1, "mañana", "Carlos", "Lopez", "11223344", "555-8765", 25],
+             4: [2, "tarde", "Ana", "Martinez", "44332211", "555-4321", 35]}
 
 # estructura tipo_trabajos = {(id_trabajo, turno): [puesto, sueldo_hora, area]}
 # Actualmente tenemos id 1: obrero, id 2: gerente
 tipo_trabajos = {(1, "mañana"): ["Obrero", 1000, "Produccion"],
-                 (1, "tarde"): ["Obrero", 1000, "Produccion"],
+                 (1, "tarde"): ["Obrero", 1200, "Produccion"],
                  (2, "mañana"): ["Gerente", 3000, "Administracion"],
                  (2, "tarde"): ["Gerente", 3000, "Administracion"]}
 
@@ -14,7 +17,10 @@ tipo_trabajos = {(1, "mañana"): ["Obrero", 1000, "Produccion"],
 liquidaciones = {}
 
 # estructura jornada = {(fecha, id_empleado): [horario_entrada, horario_salida]}
-jornada = {}
+jornada = {("10/10/2025", 1): [8, 17],
+           ("11/10/2025", 2): [8, 18],
+           ("12/10/2025", 3): [8, 16],
+           ("13/10/2025", 4): [9, 17]}
 
 contador_empleado = 1
 
@@ -88,17 +94,27 @@ while operacion != "10":
     
     elif operacion == "6":
         fecha_calcular = input("Ingrese la fecha que quiere calcular: ")
-        id_empleado_calcular = input("Ingrese el ID del empleado que quiere calcular: ")
-        for id, datos in jornada.items():
-            horario_entrada = datos[0]
-            horario_salida = datos[1]
-            if fecha_calcular == id[0] and id_empleado_calcular == id[1]:
+        id_empleado_calcular = int(input("Ingrese el ID del empleado que quiere calcular: "))
+        turno_calcular = input("Ingrese el turno del empleado que quiere calcular (Mañana o Tarde): ").lower()
+
+        # acceder directamenta a los datos en vez de hacer un for
+        jornada[(fecha_calcular, id_empleado_calcular)] = datos_jornada
+        for id_jornada, datos_jornada in jornada.items():
+            horario_entrada = datos_jornada[0]
+            horario_salida = datos_jornada[1]
+
+            if fecha_calcular == id_jornada[0] and id_empleado_calcular == id_jornada[1]:
                 horas_trabajadas = horario_salida - horario_entrada
+
                 if horas_trabajadas > 8:
+                    # restar las horas extra de las horas trabajadas
                     horas_extra = horas_trabajadas - 8
-                for id, datos in tipo_trabajos.items():
-                    id_puesto = datos[0]
-                    if id_puesto == id[0]:
+
+                for id_tipo_trabajo, datos_tipo_trabajo in tipo_trabajos.items():
+                    id_puesto = id_tipo_trabajo[0]
+                    turno_puesto = id_tipo_trabajo[1]
+                    sueldo_hora = datos_tipo_trabajo[1]
+                    if id_puesto == id_empleado_calcular and turno_calcular == turno_puesto:
                         monto_dia = horas_trabajadas * sueldo_hora + horas_extra * (sueldo_hora * 1.5)
                         print("El monto del dia es: ", monto_dia)
 
