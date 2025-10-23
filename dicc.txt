@@ -1,0 +1,79 @@
+# ================================
+# Diccionario empleados
+# ================================
+empleados = {
+    id_empleado: [id_trabajo, nombre, apellido, dni, telefono, edad]
+}
+# clave:        identificador del empleado,     INT
+# valor:        lista de datos del empleado,    List<6>
+# lista de datos:
+# id_trabajo:   identificador del trabajo,      INT (relación con tipo_trabajos)
+# nombre:       nombre del empleado,            STR
+# apellido:     apellido del empleado,          STR
+# dni:          DNI del empleado,               INT
+# telefono:     Teléfono del empleado,          INT
+# edad:         Edad del empleado,              INT
+
+
+# ================================
+# Diccionario Tipos de trabajo
+# ================================
+tipo_trabajos = {
+    id_trabajo: [puesto, sueldo_hora, turno, area]
+}
+# clave:        identificador del trabajo,      INT
+# valor:        lista de datos del trabajo,     List<4>
+# lista de datos:
+# puesto:       Nombre del cargo,               STR
+# sueldo_hora:  Compensación horaria,           INT
+# turno:        Turno del cargo,                STR
+# area:         Área del cargo,                 STR
+
+
+# ================================
+# Diccionario Liquidaciones
+# ================================
+liquidaciones = {
+    id_liquidacion: [id_empleado, sueldo_bruto, sueldo_neto, horas_extra, deducciones, periodo_mes]
+}
+# clave:        identificador de la liquidación,   INT
+# valor:        lista de información,              List<6>
+# lista de datos:
+# id_empleado:  Identificador del empleado,        INT
+# sueldo_bruto: Sueldo antes de deducciones,       INT
+# sueldo_neto:  Sueldo luego de deducciones,       INT
+# horas_extra:  Horas extras trabajadas,           INT
+# deducciones:  Descuentos aplicados,              INT
+# periodo_mes:  Mes/año del período liquidado,     STR (ej: "2025-09")
+
+
+# ================================
+# Diccionario Jornadas
+# ================================
+jornada = {
+    id_jornada: [horario_entrada, horario_salida, periodo_mes, id_empleado]
+}
+# clave:              identificador de la jornada,   INT
+# valor:              lista de información,          List<4>
+# lista de datos:
+# horario_entrada:    Hora de entrada,               STR (ej: "08:00")
+# horario_salida:     Hora de salida,                STR (ej: "17:00")
+# periodo_mes:        Mes/año trabajado,             STR (ej: "2025-09")
+# id_empleado:        Identificador del empleado,    INT
+
+
+# ================================
+# Diccionario Sueldos
+# ================================
+sueldos = {
+    id_sueldo: [id_empleado, id_trabajo, id_liquidacion]
+}
+# clave:        identificador del sueldo,        INT
+# valor:        lista de información,            List<3>
+# lista de datos:
+# id_empleado:  Identificador del empleado,      INT
+# id_trabajo:   Identificador del trabajo,       INT
+# id_liquidacion: Identificador de la liquidación, INT
+
+un empleado tiene varias jornadas en un mes, un empleado tiene un tipo de trabajo, las liquidaciones se hacen mensualmente,
+las liquidaciones se hacen para un solo empleado en un mes especifico, un tipo de trabajo puede tener un area establecida, 
