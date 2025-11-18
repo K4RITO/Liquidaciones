@@ -1,0 +1,8 @@
+1,mañana,Obrero,1000,Produccion
+1,tarde,Obrero,1200,Produccion
+2,mañana,Gerente,3000,Administracion
+2,tarde,Gerente,3000,Administracion
+3,mañana,Supervisor,2000,Calidad
+3,tarde,Supervisor,2200,Calidad
+4,mañana,Analista,1800,Sistemas
+4,tarde,Analista,2000,Sistemas

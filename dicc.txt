@@ -59,23 +59,6 @@ jornada = {
 # horario_entrada:    Hora de entrada,               STR (ej: "08:00")
 # horario_salida:     Hora de salida,                STR (ej: "17:00")
 
-
-# ================================
-# Diccionario Sueldos
-# ================================
-sueldos = {
-    id_sueldo: [id_empleado, id_trabajo, id_liquidacion]
-}
-# clave:        identificador del sueldo,        INT
-# valor:        lista de información,            List<3>
-# lista de datos:
-# id_empleado:  Identificador del empleado,      INT
-# id_trabajo:   Identificador del trabajo,       INT
-# id_liquidacion: Identificador de la liquidación, INT
-
-un empleado tiene varias jornadas en un mes, un empleado tiene un tipo de trabajo, las liquidaciones se hacen mensualmente,
-las liquidaciones se hacen para un solo empleado en un mes especifico, un tipo de trabajo puede tener un area establecida, 
-
 # ================================
 # Diccionario Montos_diarios
 # ================================
