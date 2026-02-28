@@ -1,4 +1,4 @@
-from estructuras import montos_diarios, liquidaciones
+
 
 # TODO: crear funcion obtener id liquidacion
 
