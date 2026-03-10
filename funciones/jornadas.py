@@ -64,7 +64,7 @@ def mostrar_jornadas():
             jornada = linea.split(",")
 
             fecha, id_empleado, horario_entrada, horario_salida = jornada
-            print(f"Fecha: {fecha}, ID Empleado: {id_empleado}, Hora Entrada: {horario_entrada}, Hora Salida: {horario_salida[:-1] if horario_salida.endswith("\n") else horario_salida}.")
+            print(f"Fecha: {fecha}, ID Empleado: {id_empleado}, Hora Entrada: {horario_entrada}, Hora Salida: {horario_salida.strip()}.")
 
 def modificar_jornada():
     while True:

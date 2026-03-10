@@ -18,3 +18,4 @@
 18,4,mañana,Gabriela,Ortega,33449900,555-4040,28
 19,2,tarde,Hector,Morales,66772233,555-5050,47
 20,3,mañana,Isabel,Paredes,88994455,555-6060,30
+21,2,Mañana,Victoria,Pieczara,46464646,112371292,20

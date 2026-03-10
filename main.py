@@ -1,9 +1,13 @@
+from flask import Flask
 from funciones.empleados import agregar_empleado, modificar_empleado, mostrar_empleados, eliminar_empleado
 from funciones.jornadas import agregar_jornada, modificar_jornada, mostrar_jornadas, eliminar_jornada
 from funciones.tipo_trabajos import agregar_tipo_trabajo, modificar_tipo_trabajo, mostrar_tipos_trabajos, eliminar_tipo_trabajo
 from funciones.montos import actualizar_monto, calcular_monto, mostrar_montos, eliminar_monto
 from funciones.liquidaciones import calcular_liquidacion, mostrar_liquidaciones, eliminar_liquidacion
 
+app = Flask(__name__)
+
+@app.route("/")
 def main():
     mensaje = """------------------------------
 Que operacion quiere realizar: 
@@ -64,5 +68,5 @@ Ingrese la operacion a realizar: """
 
         operacion = input(mensaje)
         
-if __name__ == "__main__":
-    main()
+app.run(host="0.0.0.0", port=81)
+
